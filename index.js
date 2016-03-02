@@ -25,8 +25,11 @@ sleepdataStream.on('end', function() {
     var attributes = [];
     //sleepdata = sleepdata.slice(-1);
     sleepdata.forEach(function(item) {
+        if(!item.End) {
+            return;
+        }
         var date = new Date(Date.parse(item.End));
-        var dateString = dateFormat(date, 'yyyy-mm-dd')
+        var dateString = dateFormat(date, 'yyyy-mm-dd');
 
         var timeInBed = moment.duration(item['Time in bed']+':00');
 
